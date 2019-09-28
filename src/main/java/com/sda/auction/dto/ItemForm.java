@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.Length;
 @ToString
 public class ItemForm {
 
+	private int id;
 	@NotEmpty(message = "{error.item.name.empty}")
 	private String name;
 
@@ -24,4 +25,20 @@ public class ItemForm {
 
 	@NotEmpty(message = "{error.item.endDate.empty}")
 	private String endDate;
+
+	@NotEmpty(message = "{error.item.category.empty}")
+	private String category;
+
+	private int currentPrice;
+
+	private int loggedUserBidValue;
+	private String ownerName;
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
+	}
+
+	public String getOwnerName() {
+		return ownerName;
+	}
 }

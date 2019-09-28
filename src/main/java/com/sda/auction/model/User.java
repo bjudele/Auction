@@ -46,6 +46,8 @@ public class User {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private Set<Item> items = new HashSet<>();
 
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private Set<Bid> bids = new HashSet<>();
 
 	public void addRole(Role role) {
 		if (roles == null) {

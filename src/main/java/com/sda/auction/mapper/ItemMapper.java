@@ -6,6 +6,8 @@ import com.sda.auction.util.DateParser;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,5 +34,27 @@ public class ItemMapper {
 		item.setEndDate(endDate);
 
 		return item;
+	}
+
+	public ItemForm map(Item item) {
+		ItemForm itemForm = new ItemForm();
+		itemForm.setName(item.getName());
+		itemForm.setDescription(item.getDescription());
+		itemForm.setStartingPrice(item.getStartingPrice());
+		itemForm.setCategory(item.getCategory());
+		itemForm.setId(item.getId());
+		itemForm.setCurrentPrice(item.getCurrentPrice());
+		itemForm.setOwnerName(item.getOwnerName());
+
+		String startDate = dateParser.format(item.getStartDate());
+		itemForm.setStartDate(startDate);
+		String endDate = dateParser.format(item.getEndDate());
+		itemForm.setEndDate(endDate);
+
+		return itemForm;
+	}
+
+	public List<ItemForm> mapListToDto(List<Item> itemList) {
+		return itemList.stream().map(this::map).collect(Collectors.toList());
 	}
 }

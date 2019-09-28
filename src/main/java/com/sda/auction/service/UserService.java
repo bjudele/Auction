@@ -3,6 +3,8 @@ package com.sda.auction.service;
 import com.sda.auction.dto.UserForm;
 import com.sda.auction.model.User;
 import java.util.Optional;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 public interface UserService {
 
@@ -10,4 +12,7 @@ public interface UserService {
 
 	User findByEmail(String email);
 
+	User getLoggedUser();
+
+	String getLoggedInUserEmail();
 }
